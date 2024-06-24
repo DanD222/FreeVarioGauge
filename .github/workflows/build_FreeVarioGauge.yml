@@ -26,7 +26,7 @@ jobs:
         run: |
           mkdir -p build
           cp config/User_Setup.h /home/runner/Arduino/libraries/TFT_eSPI/User_Setup.h
-          bin/arduino-cli compile --build-path build --fqbn esp32:esp32:esp32doit-devkit-v1 $GITHUB_WORKSPACE/src/FreeVarioGauge/FreeVarioGauge.ino
+          bin/arduino-cli compile --build-path build --fqbn esp32:esp32:esp32doit-devkit-v1 $GITHUB_WORKSPACE/src/FreeVarioGauge/FreeVarioGauge.ino -v
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v4
         with:
