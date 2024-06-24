@@ -6,8 +6,10 @@ void UpdateMode() {
       Wificount = 1;
       WiFi.softAP(ssid, password);
       delay(100);
-      IPAddress Ip(192, 168, 2, 1);    //setto IP Access Point same as gateway
+      IPAddress Ip(192, 168, 2, 1);   //setto IP Access Point same as gateway
+      //delay(0);
       IPAddress NMask(255, 255, 255, 0);
+      //delay(250);
       WiFi.softAPConfig(Ip, Ip, NMask);
       IPAddress myIP = WiFi.softAPIP();
       server.begin();
@@ -22,6 +24,7 @@ void UpdateMode() {
       delay(10);
       Serial.println();
       Serial.println("Startup");
+      #ifdef sound
       while ((soundIP == "") || (soundIP == "0.0.0.0")) {
         char Data;
         String DataString;
@@ -57,6 +60,8 @@ void UpdateMode() {
           vTaskDelay(50);
         }
       }
+      #endif
+      
       //use mdns for host name resolution
       if (!MDNS.begin(host)) { //http://esp32.local
         Serial.println("Error setting up MDNS responder!");
